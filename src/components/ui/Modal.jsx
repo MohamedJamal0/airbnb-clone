@@ -44,7 +44,10 @@ export function Window({ children }) {
 function Header({ children, ...props }) {
   const { onChange } = useContext(ModalContext);
   return (
-    <div className="flex items-center justify-between px-4 pb-2 border-b" {...props}>
+    <div
+      className="flex items-center justify-between px-4 pb-2 border-b"
+      {...props}
+    >
       <button
         className=" flex items-center justify-center w-10 h-10 hover:bg-zinc-50 duration-200 rounded-full"
         onClick={onChange}
@@ -58,7 +61,7 @@ function Header({ children, ...props }) {
 }
 
 function Body({ children, ...props }) {
-  return <div   {...props}>{children}</div>;
+  return <div {...props}>{children}</div>;
 }
 
 export default Modal;

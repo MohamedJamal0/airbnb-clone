@@ -19,7 +19,7 @@ const useIsMobile = () => {
     };
   }, []);
 
-  return {isMobile};
+  return { isMobile };
 };
 
 export default useIsMobile;

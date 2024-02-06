@@ -1,6 +1,6 @@
 import ReviewsModal from './ReviewsModal';
 import { FaStar } from 'react-icons/fa';
-import useReviews from './useReviews';
+import useReviews from './hooks/useReviews';
 import ReviewsGrid from './ReviewsGrid';
 
 export default function Reviews({ averageRating, numReviews }) {

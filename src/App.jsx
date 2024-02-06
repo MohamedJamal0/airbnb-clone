@@ -1,25 +1,27 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import useUser from './features/auth/useUser';
+import useUser from './features/auth/hooks/useUser';
 import PlacePage from './pages/PlacePage';
 
 import HostPlacesPage from './pages/HostPlacesPage';
 import HostingLayoutPage from './pages/HostingLayoutPage';
 import PlaceEditorPage from './pages/EditPLacePage';
-import EditPlaceTitle from './features/places/host/edit-place/EditPlaceTitle';
-import EditPlaceSummary from './features/places/host/edit-place/EditPlaceSummary';
-import EditPlaceCategory from './features/places/host/edit-place/EditPlaceCategory';
+import EditPlaceTitle from './features/hosting/places/EditPlaceTitle';
+import EditPlaceSummary from './features/hosting/places/EditPlaceSummary';
+import EditPlaceCategory from './features/hosting/places/EditPlaceCategory';
 
-import EditPlaceLocation from './features/places/host/edit-place/EditPlaceLocation';
-import EditPlaceType from './features/places/host/edit-place/EditPlaceType';
-import EditPlaceAmenities from './features/places/host/edit-place/EditPlaceAmenities';
-import EditPlaceImages from './features/places/host/edit-place/EditPlaceImages';
-import EditPlacePlan from './features/places/host/edit-place/EditPlacePlan';
+import EditPlaceLocation from './features/hosting/places/EditPlaceLocation';
+import EditPlaceType from './features/hosting/places/EditPlaceType';
+import EditPlaceAmenities from './features/hosting/places/EditPlaceAmenities';
+import EditPlaceImages from './features/hosting/places/EditPlaceImages';
+import EditPlacePlan from './features/hosting/places/EditPlacePlan';
 import BookingPage from './pages/BookingPage';
 import HostTodayPage from './pages/HostTodayPage';
 import ProtectRoute from './components/ProtectRoute';
-import EditPlaceStatus from './features/places/host/edit-place/EditPlaceStatus';
+import EditPlaceStatus from './features/hosting/places/EditPlaceStatus';
 import HostingBookingsPage from './pages/HostingBookingsPage';
+import HostJoinPage from './pages/HostJoinPage';
+import TripsPage from './pages/TripsPage';
 
 function App() {
   useUser();
@@ -34,6 +36,8 @@ function App() {
       element: <PlacePage />,
     },
     { path: '/book/:placeId', element: <BookingPage /> },
+    { path: 'host/homes', element: <HostJoinPage /> },
+    { path: 'trips', element: <TripsPage /> },
     {
       path: '/hosting',
       element: (

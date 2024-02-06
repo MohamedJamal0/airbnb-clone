@@ -2,26 +2,37 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 import format from 'date-fns/format';
-import { differenceInDays } from 'date-fns';
+import {
+  differenceInBusinessDays,
+  differenceInCalendarDays,
+  differenceInDays,
+  isSameDay,
+} from 'date-fns';
 import { getIndividualDates } from '../utils/helper';
 import useIsMobile from '../hooks/useIsMobile';
+import { useState } from 'react';
 
 export default function DateRangePicker({
   value,
   onChange,
-  minDays,
+  minDays = null,
   disabledDates = [],
   ...props
 }) {
   const { startDate, endDate } = value;
 
-  const {isMobile} = useIsMobile()
+  const { isMobile } = useIsMobile();
 
   const handleDateChange = (item) => {
     let { startDate, endDate } = item.selection;
 
-    if (startDate !== endDate && differenceInDays(endDate, startDate) < minDays)
-      return alert('select at least 5 days');
+    if (
+      minDays &&
+      !isSameDay(startDate, endDate) &&
+      differenceInCalendarDays(endDate, startDate) < minDays
+    )
+      return alert(`Please select at least ${minDays} days`);
+
     onChange({
       startDate: format(startDate, 'yyyy-MM-dd'),
       endDate: endDate && format(endDate, 'yyyy-MM-dd'),
@@ -41,7 +52,6 @@ export default function DateRangePicker({
   return (
     <DateRange
       className="w-full text-[16px]"
-      px
       minDate={new Date()}
       editableDateInputs={true}
       showDateDisplay={false}
@@ -49,9 +59,10 @@ export default function DateRangePicker({
       moveRangeOnFirstSelection={false}
       ranges={state}
       rangeColors={['black']}
-      months={1}
+      months={isMobile ? 1 : 2}
       direction="horizontal"
       disabledDates={dates}
+      endDatePlaceholder="End Date"
       {...props}
     />
   );

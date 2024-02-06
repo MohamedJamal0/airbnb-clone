@@ -23,7 +23,10 @@ export default function ImageCarousel({ images }) {
           if (!hasPrev) return null;
           return (
             <button
-              onClick={clickHandler}
+              onClick={(e) => {
+                e.stopPropagation();
+                clickHandler();
+              }}
               className=" absolute left-[3%] top-1/2 -translate-y-1/2  z-20  flex items-center justify-center w-6 h-6 rounded-full opacity-0 group-[&:hover]:opacity-100 duration-200 shadow bg-white/80 text-gray-800 hover:bg-white "
             >
               <SlArrowLeft className="w-3 h-3 mr-1 " />
@@ -34,7 +37,10 @@ export default function ImageCarousel({ images }) {
           if (!hasNext) return null;
           return (
             <button
-              onClick={clickHandler}
+              onClick={(e) => {
+                e.stopPropagation();
+                clickHandler();
+              }}
               className=" absolute right-[3%] top-1/2 -translate-y-1/2  z-20  flex items-center justify-center w-6 h-6 rounded-full opacity-0 group-[&:hover]:opacity-100 duration-200  shadow bg-white/80 text-gray-800 hover:bg-white"
             >
               <SlArrowRight className="w-3 h-3 ml-1" />

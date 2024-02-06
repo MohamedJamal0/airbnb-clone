@@ -22,7 +22,7 @@ export default function Dropzone({ onChange, options }) {
   return (
     <div
       {...getRootProps()}
-      className="flex items-center justify-center flex-col h-full w-full border-2 border-dashed py-10 px-5  cursor-pointer hover:border-black duration-200"
+      className="flex items-center justify-center flex-col h-full w-full aspect-video border-2 border-dashed py-10 px-5 cursor-pointer hover:border-black duration-200"
     >
       <input {...getInputProps()} />
 

@@ -1,16 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import useEditedPlace from '../features/places/host/edit-place/useEditedPlace';
-import { Sidebar } from '../features/places/host/edit-place/Sidebar';
+import useEditedPlace from '../features/hosting/places/hooks/useEditedPlace';
+import { Sidebar } from '../features/hosting/places/Sidebar';
+import HostingPageLoading from '../components/HostingPageLoading';
 
 export default function EditPlacePage() {
   const { editedPlace, isLoading } = useEditedPlace();
 
-  if (isLoading)
-    return (
-      <div className=" flex justify-center items-center h-screen ">
-        Loading...
-      </div>
-    );
+  if (isLoading) return <HostingPageLoading />;
 
   return (
     <div className="md:h-[calc(100vh-80px)] ">

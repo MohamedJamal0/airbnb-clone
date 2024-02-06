@@ -42,6 +42,10 @@ export const amenities = [
   },
 ];
 
+export const getAmenity = (id) => {
+  return amenities.find((amenity) => amenity.id === id);
+};
+
 export const placeTypes = [
   {
     id: 1,

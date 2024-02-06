@@ -7,21 +7,22 @@ import {
   useMap,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-export default function Map({ onChange, position }) {
+export default function Map({ onChange, latitude, longitude }) {
   const getCurrentPosition = () => {
     if (!navigator.geolocation) {
       return;
     }
     navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
       onChange({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+        latitude,
+        longitude,
       });
     });
   };
 
   useEffect(() => {
-    if (position.latitude && position.longitude) return;
+    if (latitude && longitude) return;
 
     getCurrentPosition();
   }, []);
@@ -29,7 +30,7 @@ export default function Map({ onChange, position }) {
   return (
     <div className="relative w-full h-full">
       <MapContainer
-        center={[position.latitude, position.longitude]}
+        center={[latitude, longitude]}
         zoom={13}
         style={{ height: '100%', width: '100%', position: 'relative' }}
         scrollWheelZoom={false}
@@ -38,16 +39,16 @@ export default function Map({ onChange, position }) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[position.latitude, position.longitude]} />
+        <Marker position={[latitude, longitude]} />
         <DetectClick onClick={onChange} />
-        <ChangeCenter position={[position.latitude, position.longitude]} />
+        <ChangeCenter position={[latitude, longitude]} />
       </MapContainer>
       <button
-      type='button'
+        type="button"
         className="px-2 py-1 text-sm absolute bottom-2 right-1/2 translate-x-1/2 z-[9999] bg-blue-500 text-white rounded-md "
         onClick={getCurrentPosition}
       >
-      My Location
+        My Location
       </button>
     </div>
   );

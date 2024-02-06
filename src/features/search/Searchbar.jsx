@@ -1,9 +1,9 @@
-import useSearch from './useSearch';
+import useSearch from './hooks/useSearch';
 import DateSelector from './DateSelector';
-import LocationSelector from './LocationSelector';
+
 import GuestsSelector from './GuestsSelector';
 import { IoClose, IoSearch } from 'react-icons/io5';
-import { FaSearch } from 'react-icons/fa';
+import CitySelector from './CitySelector';
 
 export default function Searchbar({ onClose }) {
   const { updateSearchParams, handleSearchSubmit, searchParams } = useSearch();
@@ -29,7 +29,10 @@ export default function Searchbar({ onClose }) {
           >
             <IoClose className="w-5 h-5" />
           </button>
-          <LocationSelector />
+          <CitySelector
+            onChange={updateSearchParams}
+            initCity={searchParams.city}
+          />
           <DateSelector onChange={updateSearchParams} values={searchParams} />
           <GuestsSelector onChange={updateSearchParams} values={searchParams} />
           <button className="fixed left-3 bottom-8 font-medium underline md:hidden">
@@ -39,7 +42,7 @@ export default function Searchbar({ onClose }) {
             onClick={handleSubmit}
             className="fixed flex items-center justify-center md:absolute w-10 h-10  rounded-full z-10  right-3 bottom-0 md:top-1/2 -translate-y-1/2 bg-pink-500 text-white "
           >
-            <IoSearch className='w-5 h-5' />
+            <IoSearch className="w-5 h-5" />
           </button>
         </div>
       </div>

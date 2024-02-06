@@ -12,13 +12,13 @@ export default function GuestsSelector({ onChange, values }) {
   const { ref } = useClickOutside(() => setIsShow(false));
 
   return (
-    <div ref={ref} className="md:flex-1 pb-20 md:pb-0">
+    <div ref={ref} className="md:flex-1">
       <button
         type="button"
         onClick={() => setIsShow(!isShow)}
-        className={`w-full px-6 py-3 text-left bg-white md:bg-transparent hover:bg-white rounded-full ${
-          isShow && 'bg-white shadow-lg '
-        }`}
+        className={
+          'w-full px-6 py-3 rounded-full text-left duration-100 hover:bg-gray-100'
+        }
       >
         <span className="font-semibold block">Who</span>
         <div className="text-gray-400">
@@ -26,7 +26,7 @@ export default function GuestsSelector({ onChange, values }) {
         </div>
       </button>
       {isShow && (
-        <div className="md:absolute mt-3 right-0 w-full  md:w-[50%] p-8 rounded-3xl border shadow-2xl z-10 bg-white flex flex-col gap-4">
+        <div className="md:absolute mt-3 right-0 w-full  md:w-[50%] p-8 rounded-3xl border shadow-2xl z-10 bg-white">
           <InputCounter
             title="Adults"
             caption="ages 13 or above"

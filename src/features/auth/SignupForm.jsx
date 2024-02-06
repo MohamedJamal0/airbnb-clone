@@ -1,5 +1,5 @@
 import Input from '../../components/ui/Input';
-import useSignup from './useSignup';
+import useSignup from './hooks/useSignup';
 
 export default function SignupForm() {
   const { signup, isLoading } = useSignup();
@@ -15,8 +15,14 @@ export default function SignupForm() {
     await signup({ firstName, lastName, email, password });
   };
   return (
-    <form className="py-4 px-6 w-[30vw]" onSubmit={handleSubmit}>
-      <Input type={'text'} label={'firstName'} name={'firstName'} required />
+    <form onSubmit={handleSubmit}>
+      <Input
+        type={'text'}
+        label={'firstName'}
+        name={'firstName'}
+        required
+        autoFocus
+      />
       <Input type={'text'} label={'lastName'} name={'lastName'} required />
       <Input type={'email'} label={'Email'} name={'email'} required />
       <Input type={'password'} label={'Password'} name={'password'} required />

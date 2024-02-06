@@ -1,4 +1,4 @@
-import useLogout from './useLogout';
+import useLogout from './hooks/useLogout';
 
 export default function Logout() {
   const { logout } = useLogout();

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import useUser from '../features/auth/useUser';
+import { useEffect } from 'react';
+import useUser from '../features/auth/hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 
 export default function ProtectRoute({ children }) {
@@ -14,12 +14,7 @@ export default function ProtectRoute({ children }) {
     }
   }, [user, isLoading]);
 
-  if (isLoading)
-    return (
-      <div className="h-[calc(100vh-80px)] flex items-center justify-center">
-        Loading...
-      </div>
-    );
+  if (isLoading) return null;
 
   if (isHost) return children;
 }

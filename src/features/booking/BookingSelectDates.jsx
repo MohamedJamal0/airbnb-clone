@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import DateRangePicker from '../../components/DateRangePicker';
 
-import usePlaceBookedDates from './usePlaceBookedDates';
+import usePlaceBookedDates from './hooks/usePlaceBookedDates';
 import useSearchParamsFromUrl from '../../hooks/useSearchParamsFromUrl';
 import { useState } from 'react';
 

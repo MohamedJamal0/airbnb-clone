@@ -1,20 +1,38 @@
+import { useParams } from 'react-router-dom';
+import useSearchParamsFromUrl from '../../hooks/useSearchParamsFromUrl';
 import LoginForm from '../auth/LoginForm';
 import SignupModal from '../auth/SignupModal';
-import useUser from '../auth/useUser';
-import useCreateBooking from './useCreateBooking';
-export default function CreateBooking({
-  placeId,
-  startDate,
-  endDate,
-  numAdults,
-  numChildren,
-  numInfants,
-  totalAmount,
-}) {
+import useUser from '../auth/hooks/useUser';
+import useCreateBooking from './hooks/useCreateBooking';
+import { getDifferenceInDays } from '../../utils/helper';
+
+export default function CreateBooking({ pricePerNight }) {
   const { user, isLoading } = useUser();
-  const { CreateBooking } = useCreateBooking({ user });
+
+  const { createBooking, isBooking } = useCreateBooking();
+
+  const { placeId } = useParams();
+
+  const { startDate, endDate, numAdults, numChildren, numInfants } =
+    useSearchParamsFromUrl();
 
   if (isLoading) return null;
+
+  const handleCreateBooking = async () => {
+    if (isBooking) return;
+
+    const totalAmount = pricePerNight * getDifferenceInDays(startDate, endDate);
+    const booking = {
+      placeId,
+      startDate,
+      endDate,
+      numAdults,
+      numChildren,
+      numInfants,
+      totalAmount,
+    };
+    createBooking(booking);
+  };
 
   if (user)
     return (
@@ -25,17 +43,8 @@ export default function CreateBooking({
           <span className="font-medium">Guest's Terms of Service</span>.
         </p>
         <button
-          onClick={() =>
-            CreateBooking({
-              placeId,
-              startDate,
-              endDate,
-              numAdults,
-              numChildren,
-              numInfants,
-              totalAmount,
-            })
-          }
+          onClick={handleCreateBooking}
+          disabled={isBooking}
           className="w-full py-3 rounded-md font-medium bg-pink-500 text-white"
         >
           Book

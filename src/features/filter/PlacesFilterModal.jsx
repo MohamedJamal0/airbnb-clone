@@ -16,7 +16,7 @@ export default function PlacesFilterModal() {
   return (
     <Modal open={toggle} onChange={handleToggle}>
       <Modal.Open
-        className={`relative py-2 px-6 border rounded-md  text-sm ${
+        className={`relative h-full py-2 px-6 border rounded-md  text-sm ${
           numFilters && 'border-black'
         }`}
       >
@@ -31,7 +31,7 @@ export default function PlacesFilterModal() {
         <Modal.Window>
           <Modal.Header>Filters</Modal.Header>
           <Modal.Body>
-            <PlacesFilterForm />
+            <PlacesFilterForm onClose={handleToggle} />
           </Modal.Body>
         </Modal.Window>
       </Modal.Body>

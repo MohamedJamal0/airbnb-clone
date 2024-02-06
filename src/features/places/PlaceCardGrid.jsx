@@ -14,7 +14,7 @@ export default function PlaceCardGrid({ places, isLoading }) {
     );
   }
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1%]">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 ">
       {places?.map((place) => (
         <PlaceCardItem key={place.id} place={place} />
       ))}

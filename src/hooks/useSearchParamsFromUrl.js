@@ -15,16 +15,17 @@ export default function useSearchParamsFromUrl() {
   const category = urlSearchParams.get('category') || null;
   const amenities =
     urlSearchParams.getAll('amenities').length !== 0
-      ? urlSearchParams.getAll('amenities')
+      ? urlSearchParams.getAll('amenities').map((value) => +value)
       : null;
 
+  console.log(4);
   const updateUrlSearchParams = (data) => {
     for (let k in data) {
       urlSearchParams.delete(k);
       if (!data[k] || data[k] === '0') continue;
 
       if (Array.isArray(data[k]))
-        data[k].forEach((k) => urlSearchParams.append('amenities', k));
+        data[k].forEach((value) => urlSearchParams.append('amenities', value));
       else urlSearchParams.set(k, data[k]);
     }
     setUrlSearchParams(urlSearchParams);
